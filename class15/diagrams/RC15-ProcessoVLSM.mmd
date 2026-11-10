@@ -1,0 +1,7 @@
+flowchart TD
+    A["Lista de requisitos de hosts"] --> B["Ordenar do maior\npara o menor"]
+    B --> C["Alocar maior sub-rede\ncom menor prefixo possível"]
+    C --> D["Sub-redar o espaço\nrestante para a próxima"]
+    D --> E{"Ainda há\nrequisitos?"}
+    E -->|Sim| C
+    E -->|Não| F["Tabela final de\nsub-redes documentada"]

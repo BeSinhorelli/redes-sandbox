@@ -1,0 +1,11 @@
+flowchart LR
+    PC1["PC1\n192.168.10.10/24"] ---|"cabo UTP"| R1G0["R1 G0/0/0\n192.168.10.1/24"]
+    R1G0 --- R1["R1 (Roteador)"]
+    R1 --- R1G1["R1 G0/0/1\n192.168.20.1/24"]
+    R1G1 ---|"cabo UTP"| PC3["PC3\n192.168.20.10/24"]
+
+    style R1 fill:#2563EB,color:#FFF
+    style PC1 fill:#FFFFFF,stroke:#059669,color:#334155
+    style PC3 fill:#FFFFFF,stroke:#EA580C,color:#334155
+    style R1G0 fill:#FFFFFF,stroke:#2563EB,color:#334155
+    style R1G1 fill:#FFFFFF,stroke:#2563EB,color:#334155

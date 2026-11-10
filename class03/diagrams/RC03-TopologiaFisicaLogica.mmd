@@ -1,0 +1,31 @@
+flowchart TB
+    subgraph FISICA["Topologia Física — onde os cabos estão"]
+        direction LR
+        SW["Switch\nSala 101"]
+        PC1["PC1\nSala 101"]
+        PC2["PC2\nSala 102"]
+        PC3["PC3\nSala 102"]
+        PC1 ---|"cabo UTP porta 1"| SW
+        PC2 ---|"cabo UTP porta 2"| SW
+        PC3 ---|"cabo UTP porta 3"| SW
+    end
+
+    subgraph LOGICA["Topologia Lógica — como os dados fluem"]
+        direction LR
+        PC1L["PC1\n192.168.1.10"]
+        PC2L["PC2\n192.168.1.11"]
+        PC3L["PC3\n192.168.1.12"]
+        PC1L -.->|"broadcast domain\ncompartilhado"| PC2L
+        PC2L -.-> PC3L
+        PC3L -.-> PC1L
+    end
+
+    FISICA -->|"mesma rede física\nvista logicamente como"| LOGICA
+
+    style SW fill:#2563EB,color:#FFF
+    style PC1 fill:#FFFFFF,color:#334155
+    style PC2 fill:#FFFFFF,color:#334155
+    style PC3 fill:#FFFFFF,color:#334155
+    style PC1L fill:#EA580C,color:#FFF
+    style PC2L fill:#EA580C,color:#FFF
+    style PC3L fill:#EA580C,color:#FFF

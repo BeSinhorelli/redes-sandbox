@@ -1,0 +1,22 @@
+flowchart TB
+    subgraph IPv4["Cabeçalho IPv4 (20 bytes mínimo)"]
+        direction TB
+        A1[Versão 4 bits] --> A2[IHL 4 bits] --> A3[DiffServ 8 bits] --> A4[Comprimento Total 16 bits]
+        A5[Identificação 16 bits] --> A6[Flags 3 bits] --> A7[Deslocamento do Fragmento 13 bits]
+        A8[TTL 8 bits] --> A9[Protocolo 8 bits] --> A10[Soma de Verificação 16 bits]
+        A11[Endereço IPv4 de Origem 32 bits]
+        A12[Endereço IPv4 de Destino 32 bits]
+    end
+
+    subgraph IPv6["Cabeçalho IPv6 (40 bytes fixo)"]
+        direction TB
+        B1[Versão 4 bits] --> B2[Classe de Tráfego 8 bits] --> B3[Rótulo de Fluxo 20 bits]
+        B4[Tamanho da Carga 16 bits] --> B5[Próximo Cabeçalho 8 bits] --> B6[Limite de Saltos 8 bits]
+        B7[Endereço IPv6 de Origem 128 bits]
+        B8[Endereço IPv6 de Destino 128 bits]
+    end
+
+    IPv4 -.->|"campos removidos: Flags, Deslocamento do\nFragmento e Soma de Verificação"| IPv6
+
+    style IPv4 fill:#EFF6FF,stroke:#2563EB,stroke-width:2px
+    style IPv6 fill:#ECFDF5,stroke:#059669,stroke-width:2px

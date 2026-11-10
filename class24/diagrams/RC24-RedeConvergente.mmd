@@ -1,0 +1,28 @@
+flowchart TB
+    subgraph SEG["Rede Segregada (modelo antigo)"]
+        direction LR
+        V1["Rede de Voz\n(PABX)"]
+        D1["Rede de Dados\n(Ethernet)"]
+        VD1["Rede de Vídeo\n(coaxial/CFTV)"]
+    end
+
+    subgraph CONV["Rede Convergente (modelo atual)"]
+        direction TB
+        IP["Rede IP única\n(Ethernet / Wi-Fi)"]
+        V2["Voz (VoIP)"]
+        D2["Dados"]
+        VD2["Vídeo"]
+        IP --> V2
+        IP --> D2
+        IP --> VD2
+    end
+
+    SEG -.->|"convergência"| CONV
+
+    style V1 fill:#FFFFFF,stroke:#EA580C,stroke-width:2px
+    style D1 fill:#FFFFFF,stroke:#2563EB,stroke-width:2px
+    style VD1 fill:#FFFFFF,stroke:#7C3AED,stroke-width:2px
+    style IP fill:#ECFDF5,stroke:#059669,stroke-width:3px
+    style V2 fill:#FFFFFF,stroke:#EA580C,stroke-width:2px
+    style D2 fill:#FFFFFF,stroke:#2563EB,stroke-width:2px
+    style VD2 fill:#FFFFFF,stroke:#7C3AED,stroke-width:2px

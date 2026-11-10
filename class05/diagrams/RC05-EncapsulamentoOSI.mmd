@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant App as Aplicação (Dados)
+    participant Trans as Transporte (Segmento)
+    participant Net as Internet (Pacote)
+    participant Link as Acesso à Rede (Quadro)
+    participant Phy as Física (Bits)
+    participant Meio as Meio de Transmissão
+
+    Note over App,Meio: ENCAPSULAMENTO (origem, de cima para baixo)
+    App->>Trans: Dados (ex: HTTP GET)
+    Trans->>Net: Segmento = Dados + cabeçalho TCP (portas, sequência)
+    Net->>Link: Pacote = Segmento + cabeçalho IP (IP origem/destino)
+    Link->>Phy: Quadro = Pacote + cabeçalho/trailer Ethernet (MAC origem/destino)
+    Phy->>Meio: Bits (sinal elétrico, luz ou rádio)
+
+    Note over Meio,App: DESENCAPSULAMENTO (destino, de baixo para cima)
+    Meio->>Phy: Bits recebidos
+    Phy->>Link: Quadro remontado
+    Link->>Net: Pacote (remove cabeçalho Ethernet)
+    Net->>Trans: Segmento (remove cabeçalho IP)
+    Trans->>App: Dados (remove cabeçalho TCP) - entregues à aplicação

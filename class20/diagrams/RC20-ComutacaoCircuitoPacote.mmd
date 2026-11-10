@@ -1,0 +1,22 @@
+flowchart TB
+    subgraph CIRCUITO["Comutação de Circuitos"]
+        direction LR
+        C1["Origem"] ---|"caminho dedicado\nreservado fim a fim"| C2["Destino"]
+    end
+
+    subgraph PACOTE["Comutação de Pacotes"]
+        direction LR
+        P1["Origem"] -.->|"pacote 1 via rota A"| P2["Roteador"]
+        P1 -.->|"pacote 2 via rota B"| P3["Roteador"]
+        P2 -.-> P4["Destino"]
+        P3 -.-> P4
+    end
+
+    CIRCUITO --> PACOTE
+
+    style C1 fill:#FFFFFF,stroke:#2563EB,stroke-width:2px
+    style C2 fill:#FFFFFF,stroke:#2563EB,stroke-width:2px
+    style P1 fill:#FFFFFF,stroke:#059669,stroke-width:2px
+    style P2 fill:#FFFFFF,stroke:#059669,stroke-width:2px
+    style P3 fill:#FFFFFF,stroke:#059669,stroke-width:2px
+    style P4 fill:#FFFFFF,stroke:#059669,stroke-width:2px

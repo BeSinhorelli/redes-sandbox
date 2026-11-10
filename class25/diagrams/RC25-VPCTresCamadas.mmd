@@ -1,0 +1,25 @@
+flowchart TB
+    Internet(["Internet"]) --> IGW["Internet Gateway"]
+    IGW --> LB["Load Balancer"]
+
+    subgraph WEB["Sub-rede pública — 10.0.1.0/24 (Web)"]
+        LB --> WS["Servidores Web"]
+    end
+
+    subgraph APP["Sub-rede privada — 10.0.2.0/24 (Aplicação)"]
+        AS["Servidores de Aplicação"]
+    end
+
+    subgraph DB["Sub-rede privada — 10.0.3.0/24 (Banco de Dados)"]
+        BD["Banco de Dados"]
+    end
+
+    WS -->|"security group: só da sub-rede Web"| AS
+    AS -->|"security group: só da sub-rede Aplicação"| BD
+
+    style Internet fill:#FFFFFF,stroke:#64748B,stroke-width:2px
+    style IGW fill:#FFFFFF,stroke:#1E293B,stroke-width:2px
+    style LB fill:#FFFFFF,stroke:#1E293B,stroke-width:2px
+    style WEB fill:#EFF6FF,stroke:#2563EB,stroke-width:2px
+    style APP fill:#ECFDF5,stroke:#059669,stroke-width:2px
+    style DB fill:#FEF3C7,stroke:#D97706,stroke-width:2px

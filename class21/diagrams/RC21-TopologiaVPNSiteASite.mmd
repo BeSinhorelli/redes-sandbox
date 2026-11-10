@@ -1,0 +1,26 @@
+flowchart LR
+    subgraph Matriz["Matriz — Porto Alegre (192.168.1.0/24)"]
+        direction TB
+        SW1["Switch"] --- PC1["Estações internas"]
+        SW1 --- GW1["Roteador de borda\n(gateway IPSec)"]
+    end
+
+    subgraph Internet["Internet pública"]
+        direction TB
+        NET(("Internet"))
+    end
+
+    subgraph Filial["Filial — Canoas (192.168.2.0/24)"]
+        direction TB
+        GW2["Roteador de borda\n(gateway IPSec)"] --- SW2["Switch"]
+        SW2 --- PC2["Estações internas"]
+    end
+
+    GW1 ===|"Túnel IPSec\nmodo túnel, ESP"| NET
+    NET ===|"Túnel IPSec\nmodo túnel, ESP"| GW2
+
+    style GW1 fill:#2563EB,color:#FFF
+    style GW2 fill:#7C3AED,color:#FFF
+    style NET fill:#E2E8F0,stroke:#64748B,color:#334155
+    style PC1 fill:#FFFFFF,stroke:#2563EB,color:#334155
+    style PC2 fill:#FFFFFF,stroke:#7C3AED,color:#334155

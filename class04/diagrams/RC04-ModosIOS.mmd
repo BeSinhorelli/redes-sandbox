@@ -1,0 +1,12 @@
+stateDiagram-v2
+    [*] --> UsuarioEXEC
+    UsuarioEXEC --> PrivilegiadoEXEC: enable
+    PrivilegiadoEXEC --> UsuarioEXEC: disable
+    PrivilegiadoEXEC --> ConfigGlobal: configure terminal
+    ConfigGlobal --> PrivilegiadoEXEC: exit / end / Ctrl+Z
+    ConfigGlobal --> ConfigLinha: line console 0 / line vty 0 15
+    ConfigGlobal --> ConfigInterface: interface <nome>
+    ConfigLinha --> ConfigGlobal: exit
+    ConfigInterface --> ConfigGlobal: exit
+    ConfigLinha --> PrivilegiadoEXEC: end / Ctrl+Z
+    ConfigInterface --> PrivilegiadoEXEC: end / Ctrl+Z

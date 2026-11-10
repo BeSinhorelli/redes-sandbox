@@ -1,0 +1,19 @@
+flowchart TB
+    L3["Camada 3 — Rede\n(IP, roteamento)"]
+
+    subgraph L2["Camada 2 — Enlace de Dados"]
+        direction TB
+        LLC["Sub-camada LLC\nLogical Link Control\n(software — fala com a Camada 3)"]
+        MAC["Sub-camada MAC\nMedia Access Control\n(hardware — encapsula e acessa o meio)"]
+        LLC --> MAC
+    end
+
+    L1["Camada 1 — Física\n(bits, mídia de transmissão)"]
+
+    L3 --> LLC
+    MAC --> L1
+
+    style L3 fill:#FFFFFF,stroke:#2563EB,stroke-width:2px
+    style LLC fill:#FFFFFF,stroke:#2563EB,stroke-width:2px
+    style MAC fill:#FFFFFF,stroke:#059669,stroke-width:2px
+    style L1 fill:#FFFFFF,stroke:#D97706,stroke-width:2px
